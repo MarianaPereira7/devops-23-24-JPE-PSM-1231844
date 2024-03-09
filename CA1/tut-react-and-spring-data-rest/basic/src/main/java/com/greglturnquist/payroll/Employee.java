@@ -54,7 +54,8 @@ public class Employee {
 		return Objects.equals(id, employee.id) &&
 			Objects.equals(firstName, employee.firstName) &&
 			Objects.equals(lastName, employee.lastName) &&
-			Objects.equals(description, employee.description);
+			Objects.equals(description, employee.description) &&
+			Objects.equals(jobYears, employee.jobYears);
 	}
 
 	private boolean validJobYears(int jobYears){
@@ -69,7 +70,7 @@ public class Employee {
 	@Override
 	public int hashCode() {
 
-		return Objects.hash(id, firstName, lastName, description);
+		return Objects.hash(id, firstName, lastName, description, jobYears);
 	}
 
 	public Long getId() {
