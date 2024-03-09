@@ -32,13 +32,18 @@ public class Employee {
 	private String firstName;
 	private String lastName;
 	private String description;
+	private int jobYears;
 
-	private Employee() {}
+	public Employee() {}
 
-	public Employee(String firstName, String lastName, String description) {
+	public Employee(String firstName, String lastName, String description, int jobYears) throws InstantiationException {
+		if(!validEmployeeInformation(firstName, lastName, description) || !validJobYears(jobYears)) {
+			throw new InstantiationException("Invalid employee data.");
+		}
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.description = description;
+		this.jobYears = jobYears;
 	}
 
 	@Override
@@ -52,6 +57,15 @@ public class Employee {
 			Objects.equals(description, employee.description);
 	}
 
+	private boolean validJobYears(int jobYears){
+		return (jobYears >= 0);
+	}
+
+	private boolean validEmployeeInformation(String firstName, String lastName, String description){
+		return ((firstName != null && !firstName.trim().isEmpty()) &&
+				(lastName != null && !lastName.trim().isEmpty()) &&
+				(description != null && !description.trim().isEmpty()));
+	}
 	@Override
 	public int hashCode() {
 
@@ -90,6 +104,14 @@ public class Employee {
 		this.description = description;
 	}
 
+	public int getJobYears(){return this.jobYears;}
+
+	public void setJobYears(int jobYears) {
+		if(validJobYears(jobYears)){
+			this.jobYears = jobYears;
+		}
+	}
+
 	@Override
 	public String toString() {
 		return "Employee{" +
@@ -97,6 +119,7 @@ public class Employee {
 			", firstName='" + firstName + '\'' +
 			", lastName='" + lastName + '\'' +
 			", description='" + description + '\'' +
+			", jobYears='" + jobYears + '\'' +
 			'}';
 	}
 }
