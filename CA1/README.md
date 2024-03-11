@@ -55,19 +55,19 @@ following set of commands.
     
     //to initialize the Git repository
     git init
-   
+    
     //to add the untracked files to the staging area 
     git add test_file.txt
-   
+    
     //to create the frist commit
     git commit -m "first commit"
     
     //to rename the default branch from master to main
     git branch -M main
-   
+    
     //to link the local repository with a remote repository on GitHub
     git remote add origin https://github.com/your_username/repository_name.git
-   
+    
     //to push the commits from the local main branch to the main branch on the remote repository
     git push -u origin main.
     ```
@@ -85,11 +85,11 @@ source code for this assignment already has a specific and adjusted `.gitignore`
 [**link**](https://github.com/spring-guides/tut-react-and-spring-data-rest) and on the repository homepage, click on the
 `code <>` button and copy the URL displayed (once again, example bellow using HTTPS option). Create a new folder to clone 
 this new repository to (e.g. CA1), navigate to that folder and finally clone the repository.
-```bash
-mkdir CA1
-cd CA1
-git clone https://github.com/spring-guides/tut-react-and-spring-data-rest.git
-```
+    ```bash
+    mkdir CA1
+    cd CA1
+    git clone https://github.com/spring-guides/tut-react-and-spring-data-rest.git
+    ```
 
 **VERY IMPORTANT NOTE:** After cloning, move to the tut-react-and-spring-data-rest folder and remove the .git folder, since 
 there is already one on your root. Having multiple `.git` folders would violate the structure and integrity of the repository.
@@ -116,7 +116,7 @@ To create issues on GitHub, simply follow the following steps:
 Considering this assignment's objectives, the following issues were created:
 
 | Issue Number  |                               Description                                       |
-|:-------------:|:--------------------------------------------------------------------------------|
+|:-------------:|:-------------------------------------------------------------------------------:|
 |    **#1**     | Add a new field to record the years of the employee in the company              |
 |    **#2**     | Create a branch named _email-field_ to add a new email field to the application |
 |    **#3**     | Create a branch for fixing email bugs                                           |
@@ -681,7 +681,7 @@ they have some differences in terms of features, workflow, and usage.
 * #### Pros of Git and Mercurial:
 
 | Git                                                                                                          | Mercurial                                                                                             |
-|:-------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------|
+|:------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------:|
 | Extensive community support                                                                                  | Simple command line interface                                                                         |
 | Really good branching and merging capabilities                                                               | Begginer friendly due to its clear and comprehensive documentation                                    |
 | Flexible branching model suitable for complex workflows                                                      | Built-in web interface and GUI tools, make it easy to visualize repository history and manage changes |
@@ -692,7 +692,7 @@ they have some differences in terms of features, workflow, and usage.
 * #### Cons of Git and Mercurial:
 
 | Git                                     | Mercurial                                                                                             |
-|:----------------------------------------|:------------------------------------------------------------------------------------------------------|
+|:---------------------------------------:|:-----------------------------------------------------------------------------------------------------:|
 | Challeging for begginers to learn       | Smaller community support                                                                             |
 | Can be complex to manage large projects | Slower performance, especially for large repositories                                                 |
 | Some commands have non-intuitive syntax | Limited support for complex branching and merging |
