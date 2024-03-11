@@ -12,9 +12,10 @@ public class EmployeeTest {
         String firstName = "Mariana";
         String lastName = "Pereira";
         String description = "Chemical Engineer";
+        String email = "example@email.com";
         int jobYears = 0;
 
-        Employee newEmployee = new Employee(firstName, lastName, description, jobYears);
+        Employee newEmployee = new Employee(firstName, lastName, description, jobYears, email);
         newEmployee.setJobYears(2);
         int expected = 2;
 
@@ -31,9 +32,10 @@ public class EmployeeTest {
         String firstName = "Mariana";
         String lastName = "Pereira";
         String description = "Chemical Engineer";
+        String email = "example@email.com";
         int jobYears = 3;
 
-        Employee newEmployee = new Employee(firstName, lastName, description, jobYears);
+        Employee newEmployee = new Employee(firstName, lastName, description, jobYears, email);
         newEmployee.setJobYears(-22);
         int expected = 3;
 
@@ -50,12 +52,13 @@ public class EmployeeTest {
         String firstName = "Mariana";
         String lastName = "Pereira";
         String description = "Chemical Engineer";
+        String email = "example@email.com";
         int jobYears = -22;
         String expected = "Invalid employee data.";
 
         //Act
         Exception exception = assertThrows(InstantiationException.class, () -> {
-            new Employee(firstName, lastName, description, jobYears);
+            new Employee(firstName, lastName, description, jobYears, email);
         });
         String result = exception.getMessage();
 
@@ -69,12 +72,13 @@ public class EmployeeTest {
         String firstName = null;
         String lastName = "Pereira";
         String description = "Chemical Engineer";
+        String email = "example@email.com";
         String expected = "Invalid employee data.";
         int jobYears = 3;
 
         //Act
         Exception exception = assertThrows(InstantiationException.class, () -> {
-            new Employee(firstName, lastName, description, jobYears);
+            new Employee(firstName, lastName, description, jobYears, email);
         });
         String result = exception.getMessage();
 
@@ -88,12 +92,13 @@ public class EmployeeTest {
         String firstName = "Mariana";
         String lastName = null;
         String description = "Chemical Engineer";
+        String email = "example@email.com";
         String expected = "Invalid employee data.";
         int jobYears = 3;
 
         //Act
         Exception exception = assertThrows(InstantiationException.class, () -> {
-            new Employee(firstName, lastName, description, jobYears);
+            new Employee(firstName, lastName, description, jobYears, email);
         });
         String result = exception.getMessage();
 
@@ -107,12 +112,13 @@ public class EmployeeTest {
         String firstName = "Mariana";
         String lastName = "Pereira";
         String description = null;
+        String email = "example@email.com";
         String expected = "Invalid employee data.";
         int jobYears = 3;
 
         //Act
         Exception exception = assertThrows(InstantiationException.class, () -> {
-            new Employee(firstName, lastName, description, jobYears);
+            new Employee(firstName, lastName, description, jobYears, email);
         });
         String result = exception.getMessage();
 
@@ -126,12 +132,13 @@ public class EmployeeTest {
         String firstName = " ";
         String lastName = "Pereira";
         String description = "Chemical Engineer";
+        String email = "example@email.com";
         String expected = "Invalid employee data.";
         int jobYears = 3;
 
         //Act
         Exception exception = assertThrows(InstantiationException.class, () -> {
-            new Employee(firstName, lastName, description, jobYears);
+            new Employee(firstName, lastName, description, jobYears, email);
         });
         String result = exception.getMessage();
 
@@ -145,12 +152,13 @@ public class EmployeeTest {
         String firstName = "Mariana";
         String lastName = " ";
         String description = "Chemical Engineer";
+        String email = "example@email.com";
         String expected = "Invalid employee data.";
         int jobYears = 3;
 
         //Act
         Exception exception = assertThrows(InstantiationException.class, () -> {
-            new Employee(firstName, lastName, description, jobYears);
+            new Employee(firstName, lastName, description, jobYears, email);
         });
         String result = exception.getMessage();
 
@@ -164,12 +172,53 @@ public class EmployeeTest {
         String firstName = "Mariana";
         String lastName = "Pereira";
         String description = " ";
+        String email = "example@email.com";
         String expected = "Invalid employee data.";
         int jobYears = 3;
 
         //Act
         Exception exception = assertThrows(InstantiationException.class, () -> {
-            new Employee(firstName, lastName, description, jobYears);
+            new Employee(firstName, lastName, description, jobYears, email);
+        });
+        String result = exception.getMessage();
+
+        //Assert
+        assertEquals(expected,result);
+    }
+
+    @Test
+    void whenSetEmptyEmail_ThenThrowsInstantiationException() {
+        //Arrange
+        String firstName = "Mariana";
+        String lastName = "Pereira";
+        String description = "Chemical Engineer";
+        String email = " ";
+        String expected = "Invalid employee data.";
+        int jobYears = 3;
+
+        //Act
+        Exception exception = assertThrows(InstantiationException.class, () -> {
+            new Employee(firstName, lastName, description, jobYears, email);
+        });
+        String result = exception.getMessage();
+
+        //Assert
+        assertEquals(expected,result);
+    }
+
+    @Test
+    void whenSetNullEmail_ThenThrowsInstantiationException() {
+        //Arrange
+        String firstName = "Mariana";
+        String lastName = "Pereira";
+        String description = "Chemical Engineer";
+        String email = null;
+        String expected = "Invalid employee data.";
+        int jobYears = 3;
+
+        //Act
+        Exception exception = assertThrows(InstantiationException.class, () -> {
+            new Employee(firstName, lastName, description, jobYears, email);
         });
         String result = exception.getMessage();
 
