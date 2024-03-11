@@ -403,7 +403,7 @@ git tag ca1-part1
 git push origin --tags
 ```
 
-<br>
+---
 
 ### Part 2: Development of new features using separate branches
 #### Part 2.1: Email-field Branch
@@ -427,7 +427,7 @@ git push -u origin email-field
 
 2. Similarly to Part 1:
 * Add a new private field for `email`;
-* Update all the methods and files in accordance (please return to [Part 1](#part-1-development-of-a-new-feature-using-the-main-branch-) if support is needed).
+* Update all the methods and files in accordance (please revisit [**Part 1**](#part-1-development-of-a-new-feature-using-the-main-branch) if support is needed).
 * Also update the tests, since the `Employee` constructor now has an extra field, to avoid compile errors.  
 Two extra tests were included, showing that an email cannot be _null_ neither _empty_.  
 ```java
@@ -504,13 +504,116 @@ git push origin main
 
 7. Finally, make a tag to mark that the feature is completed, then push it to the remote repository.
 ```bash
-git tag -a v1.3.0 -m "Finesh Assignment Part 2.1"
+git tag -a v1.3.0 -m "Finish Assignment Part 2.1"
 git push origin --tags
 ```
 
 <br>
 
 #### Part 2.2: Fixed-invalid-email Branch
+#### Requirements:
+- Create a new branch to fix a bug on the `email` feature;
+- The server should only accept Employees with a valid email (e.g., an email must have the ”@” sign);
+- Add unit tests for testing the creation of Employees and the validation of their attributes.
+
+Similarly to Part 2.1:
+1. First start by executing the following commands in order to create a new branch called `fix-invalid-email` in your local
+   repository, switch your working directory to the new branch to start working on it and, finally, push it to the remote
+   repository to track the local `fix-invalid-email` branch. The objective is to work on this new branch to fix the bug.
+```bash
+git branch fix-invalid-email
+git checkout fix-invalid-email
+git push -u origin fix-invalid-email
+```
+
+2. Add extra validation of the email field, by implementing the methods shown below. Update also the 
+`validEmployeeInformation()` method.
+```java
+private boolean validEmployeeInformation(String firstName, String lastName, String description, String email){
+    return ((firstName != null && !firstName.trim().isEmpty()) &&
+            (lastName != null && !lastName.trim().isEmpty()) &&
+            (description != null && !description.trim().isEmpty()) &&
+            (email != null && countEmailCharacter(email) == 1));
+}
+
+private int countEmailCharacter(String email){
+    char charToVerify = '@';
+    int counter = 0;
+    for(char letter : email.toCharArray()){
+        if(letter == charToVerify)
+            counter++;
+    }
+    return counter;
+}
+```
+
+3. Add extra tests as follows to validate the bug fix.
+
+```java
+@Test
+void whenEmailWithoutSpecialCharacter_ThenThrowsInstantiationException() {
+    //Arrange
+    String firstName = "Mariana";
+    String lastName = "Pereira";
+    String description = "Chemical Engineer";
+    String email = "exampleemail.com";
+    String expected = "Invalid employee data.";
+    int jobYears = 3;
+
+    //Act
+    Exception exception = assertThrows(InstantiationException.class, () -> {
+        new Employee(firstName, lastName, description, jobYears, email);
+    });
+    String result = exception.getMessage();
+
+    //Assert
+    assertEquals(expected,result);
+}
+
+@Test
+void whenEmailWithMoreThanOneSpecialCharacter_ThenThrowsInstantiationException() {
+    //Arrange
+    String firstName = "Mariana";
+    String lastName = "Pereira";
+    String description = "Chemical Engineer";
+    String email = "exa@mple@email.com";
+    String expected = "Invalid employee data.";
+    int jobYears = 3;
+
+    //Act
+    Exception exception = assertThrows(InstantiationException.class, () -> {
+        new Employee(firstName, lastName, description, jobYears, email);
+    });
+    String result = exception.getMessage();
+
+    //Assert
+    assertEquals(expected,result);
+}
+```
+
+3. As requested in the assignment, all changes were added to the remote repository in a single commit and the related issue
+   was closed, using the next set of commands:
+```bash 
+git add .
+git commit -m "Fix bug in employee email field fixes #3"
+```
+
+4.  To reflect this changes in the main branch, switch to the main branch, merge changes from the `fix-invalid-email` 
+branch into `main` with a non-fast-forward merge, and then push the changes to the remote repository.
+```bash 
+git checkout main
+git merge --no-ff fix-invalid-email
+git push origin main
+```
+
+5. Finally, make a tag to mark that the feature is completed and another one to mark the end of the Assignment, 
+then push all tags to the remote repository.
+```bash
+git tag -a v1.3.1 -m "Finish Assignment Part 2.2"
+git tag -a ca1-part2 -m "Finish Class Assignment 1"
+git push origin --tags
+```
+
 
 ---
 ## 4. Alternative Solution: Git vs. Mercurial
