@@ -38,25 +38,32 @@ The repository containing all the work developed using **Git** can be found [**h
 ---
 
 ## 1. Git: How to Get Started
-
+In order to follow this tutorial, a Git account is a must as well as an Integrated Development Environment (IDE). The code 
+referenced below was made recurring to IntelliJ.  
+Follow the next steps to create a new repository and prepare it for this assignment.  
+  
+1. Open your account in GitHub and start by creating a new repository.  
+2. After filling the `Repository name` and `Owner` fields, click on `Create repository`.
+3. To be able to clone your repository, copy the link displayed.
+On your machine, go to 
 
 ---
 ## 2. How to Create Issues on GitHub
 To create issues on GitHub, simply follow the following steps:
-* Open your repository on GitHub;
-* Click on the ```Issues``` tab;
-* Click on ```New issue```;
-* Fill the ```Title``` and ```Description``` fields as desired;
-* Click on ```Submite new issue```.
+* Open your repository on GitHub (web);
+* Click on the `Issues` tab;
+* Click on `New issue`;
+* Fill the `Title` and `Description` fields as desired;
+* Click on `Submite new issue`.
 
 
 Considering this assignment's objectives, the following issues were created:
 
-| Issue Number  | Description                                                                   |
-|:-------------:|:------------------------------------------------------------------------------|
-|    **#1**     | Add a new field to record the years of the employee in the company                                                                              |
+| Issue Number  |                               Description                                       |
+|:-------------:|:--------------------------------------------------------------------------------|
+|    **#1**     | Add a new field to record the years of the employee in the company              |
 |    **#2**     | Create a branch named _email-field_ to add a new email field to the application |
-|    **#3**     | Create a branch for fixing email bugs                                         |
+|    **#3**     | Create a branch for fixing email bugs                                           |
 
 
 ---
@@ -65,8 +72,8 @@ Considering this assignment's objectives, the following issues were created:
 ### Part 1: Development of a new feature using the main branch  
 
 
-#### Objetives:
-- Add support for a new field called ```jobYears```;
+#### Requirements:
+- Add support for a new field called `jobYears`;
 - Add unit tests for testing the creation of Employees and the validation of their attributes 
 (for instance, no null/empty values). For the new field, only integer values should be allowed.
 
@@ -76,13 +83,13 @@ In order to implement the previous objectives, consider the following steps:
 git tag -a v1.1.0 -m "Assignment Part 1 - Starting Point"
 ```
 
-2. Open the ```Employee``` Class in ```basic/src/main/java/com.gregIturnquist.payroll``` package and add a new private 
-field for the ```jobYears```.
+2. Open the `Employee` Class in `basic/src/main/java/com.gregIturnquist.payroll` package and add a new private 
+field for the `jobYears`.
 ```java
 private int jobYears;
 ```
 
-3. Update the ```Employee``` Class constructor to consider the new field and verify if employee parameters are valid. 
+3. Update the `Employee` Class constructor to consider the new field and verify if employee parameters are valid. 
 ```java
 public Employee(String firstName, String lastName, String description, int jobYears) throws InstantiationException {
     if(!validEmployeeInformation(firstName, lastName, description) || !validJobYears(jobYears)) {
@@ -95,8 +102,8 @@ public Employee(String firstName, String lastName, String description, int jobYe
 }
 ```
 
-4. Create methods to validate the employee data. String data such as ```firstName```, ```lastName``` and ```description```
-cannot be _null_ neither _empty_, and ```jobYears``` variable must be an integer value. It was also considered that 
+4. Create methods to validate the employee data. String data such as `firstName`, `lastName` and `description`
+cannot be _null_ neither _empty_, and `jobYears` variable must be an integer value. It was also considered that 
 it should not be lower than zero.
 ```java
 private boolean validJobYears(int jobYears){
@@ -110,7 +117,7 @@ private boolean validEmployeeInformation(String firstName, String lastName, Stri
 }
 ```
 
-5. Add getter and setter methods for the **_jobYears_** field:
+5. Add getter and setter methods for the `jobYears` field:
    
 ```java
 public int getJobYears() {
@@ -122,7 +129,25 @@ public void setJobYears(int jobYears) {
 }
 ```
 
-6. Test the new feature by creating a test directory under `/src`.
+6. Update the equals() and hashcode() methods: 
+```java
+public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Employee employee = (Employee) o;
+    return Objects.equals(id, employee.id) &&
+        Objects.equals(firstName, employee.firstName) &&
+        Objects.equals(lastName, employee.lastName) &&
+        Objects.equals(description, employee.description) &&
+        Objects.equals(jobYears, employee.jobYears);
+}
+
+public int hashCode() {
+    return Objects.hash(id, firstName, lastName, description, jobYears);
+}
+```
+
+7. Test the new feature by creating a test directory under `/src`.
 Considering the previous code, the following tests were made:
 ```java
 public class EmployeeTest {
@@ -300,8 +325,8 @@ public class EmployeeTest {
 }
 ```
 
-7. Now that the new feature is working, move to the ```DatabaseLoader``` Class in the same package and update 
-the ```run()``` method as follows.  
+8. Now that the new feature is working, move to the `DatabaseLoader` Class in the same package and update 
+the `run()` method as follows.  
 In the example below, an extra entry was added.
 ```java
 public void run(String... strings) throws Exception {
@@ -310,7 +335,7 @@ public void run(String... strings) throws Exception {
 }
 ```
 
-8. Go to the ```app.js``` file located in the ```basic/src/main/js/api``` folder and update the ```render()``` methods
+9. Go to the `app.js` file located in the `basic/src/main/js/api` folder and update the `render()` methods
 in order to consider the new field.
 ```javascript
 class EmployeeList extends React.Component{
@@ -347,20 +372,22 @@ class Employee extends React.Component{
    }
 }
 ```
-9. To see the changes in the client side, open Git bash terminal in the basic folder and use the following command,
+
+10. To see the changes in the client side, open Git bash terminal, change to the basic folder using `cd CA1/tut-react-and-spring-data-rest/basic/` and use the following command,
    to execute the Spring Boot application using Maven Wrapper.
 ```bash
 ./mvnw spring-boot:run
 ```
 
-10. Click [**here**](http://localhost:8080/) to launch the client in your browser.
+11. Click [**here**](http://localhost:8080/) to launch the client in your browser.
 It is expected to see the following:
 
 |                          **Before the new feature**                          | **After the new feature**                                                 |
 |:----------------------------------------------------------------------------:|:--------------------------------------------------------------------------|
 | ![before](tut-react-and-spring-data-rest/basic/images/without-job-years.png) | ![before](tut-react-and-spring-data-rest/basic/images/with-job-years.png) |
 
-11. As stated in the assignment, all changes were added to the remote repository in a single commit and the related issue 
+
+12. As requested in the assignment, all changes were added to the remote repository in a single commit and the related issue 
 was closed, using the next set of commands:
 ```bash 
 git add .
@@ -368,25 +395,127 @@ git commit -m "Add new field to consider employee job years fixes #1"
 git push
 ```
 
-12. Make a tag to mark that the feature is completed and a second one to officially mark the end of Part 1 assignment.  
+13. Make a tag to mark that the feature is completed and a second one to officially mark the end of Part 1 assignment.  
 Then push all the tags to the remote repository.
 ```bash
 git tag -a v1.2.0 -m "Assignment Part 1 - Ending Point"
-git tag ca-part1
+git tag ca1-part1
 git push origin --tags
 ```
 
+<br>
 
 ### Part 2: Development of new features using separate branches
 #### Part 2.1: Email-field Branch
+
+#### Requirements:
+- Create a new branch to develop a new feature;
+- Add support for a new field called `email-field`;
+- Add unit tests for testing the creation of Employees and the validation of their attributes
+  (for instance, no null/empty values).
+
+In this section, it is going to be explained how to work in a separate branch to develop a new feature.
+1. First start by executing the following commands in order to create a new branch called `email-field` in your local 
+repository, switch your working directory to the new branch to start working on it and, finally, push it to the remote 
+repository to track the local `email-field` branch. The objective is to work on this new branch to develop a new feature.
+```bash
+git branch email-field
+git checkout email-field
+git push -u origin email-field
+```
+<br>
+
+2. Similarly to Part 1:
+* Add a new private field for `email`;
+* Update all the methods and files in accordance (please return to [Part 1](#part-1-development-of-a-new-feature-using-the-main-branch-) if support is needed).
+* Also update the tests, since the `Employee` constructor now has an extra field, to avoid compile errors.  
+Two extra tests were included, showing that an email cannot be _null_ neither _empty_.  
+```java
+@Test
+    void whenSetEmptyEmail_ThenThrowsInstantiationException() {
+        //Arrange
+        String firstName = "Mariana";
+        String lastName = "Pereira";
+        String description = "Chemical Engineer";
+        String email = " ";
+        String expected = "Invalid employee data.";
+        int jobYears = 3;
+
+        //Act
+        Exception exception = assertThrows(InstantiationException.class, () -> {
+            new Employee(firstName, lastName, description, jobYears, email);
+        });
+        String result = exception.getMessage();
+
+        //Assert
+        assertEquals(expected,result);
+    }
+
+    @Test
+    void whenSetNullEmail_ThenThrowsInstantiationException() {
+        //Arrange
+        String firstName = "Mariana";
+        String lastName = "Pereira";
+        String description = "Chemical Engineer";
+        String email = null;
+        String expected = "Invalid employee data.";
+        int jobYears = 3;
+
+        //Act
+        Exception exception = assertThrows(InstantiationException.class, () -> {
+            new Employee(firstName, lastName, description, jobYears, email);
+        });
+        String result = exception.getMessage();
+
+        //Assert
+        assertEquals(expected,result);
+    }
+```
+        
+3. To see the changes in the client side, open Git bash terminal, change to the basic folder using `cd CA1/tut-react-and-spring-data-rest/basic/` and use the following command,
+   to execute the Spring Boot application using Maven Wrapper.
+```bash
+./mvnw spring-boot:run
+```
+
+4. Click [**here**](http://localhost:8080/) to launch the client again in your browser.
+    It is expected to see the following:
+
+|                         **Before the new feature**                         | **After the new feature**                                            |
+|:--------------------------------------------------------------------------:|:---------------------------------------------------------------------|
+| ![before](tut-react-and-spring-data-rest/basic/images/with-job-years.png)  | ![after](tut-react-and-spring-data-rest/basic/images/with-email.png) |
+
+5. As requested in the assignment, all changes were added to the remote repository in a single commit and the related issue
+    was closed, using the next set of commands:
+```bash 
+git add .
+git commit -m "Add new field to consider employee email fixes #2"
+```
+
+6.  To reflect this changes in the main branch, switch to the main branch, merge changes from the email-field branch into main with a 
+non-fast-forward merge, and then push the changes to the remote repository.  
+Note: A non-fast-forward merge preserves the history and clearly indicates that a merge has occurred, even if there are
+no divergent changes between the branches.
+```bash 
+git checkout main
+git merge --no-ff email-field
+git push origin main
+```
+
+7. Finally, make a tag to mark that the feature is completed, then push it to the remote repository.
+```bash
+git tag -a v1.3.0 -m "Finesh Assignment Part 2.1"
+git push origin --tags
+```
+
+<br>
+
 #### Part 2.2: Fixed-invalid-email Branch
 
 ---
 ## 4. Alternative Solution: Git vs. Mercurial
 Git and Mercurial are both free distributed version control systems (DVCS) designed to manage source code repositories, but 
 they have some differences in terms of features, workflow, and usage.
-
-
 
 ### Pros and Cons
 
