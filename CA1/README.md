@@ -2,7 +2,7 @@
 
 ## Overview
 
-The goal of this class assignment was to learn how to use Git, using GitHub as the hosting platform.  
+The goal of this class assignment was to learn how to use Git, using GitHub as the hosting platform.  https://github.com/MarianaPereira7/devops-23-24-JPE-PSM-1231844/blob/main/CA1/README.md#4-alternative-solution-git-vs-mercurial
 New concepts such as _**clone**_, _**commit**_, _**push**_, _**pull**_, _**tag**_, _**branch**_ and _**merge**_ were 
 explored.
 To support the assignment, a web application was provided and the source code is available [**here**](https://github.com/spring-guides/tut-react-and-spring-data-rest).  
@@ -60,7 +60,7 @@ To create issues on GitHub, simply follow the following steps:
 Considering this assignment's objectives, the following issues were created:
 
 | Issue Number  |                               Description                                       |
-|:-------------:|:--------------------------------------------------------------------------------|
+|:-------------:|:-------------------------------------------------------------------------------:|
 |    **#1**     | Add a new field to record the years of the employee in the company              |
 |    **#2**     | Create a branch named _email-field_ to add a new email field to the application |
 |    **#3**     | Create a branch for fixing email bugs                                           |
@@ -383,7 +383,7 @@ class Employee extends React.Component{
 It is expected to see the following:
 
 |                          **Before the new feature**                          | **After the new feature**                                                 |
-|:----------------------------------------------------------------------------:|:--------------------------------------------------------------------------|
+|:----------------------------------------------------------------------------:|:-------------------------------------------------------------------------:|
 | ![before](tut-react-and-spring-data-rest/basic/images/without-job-years.png) | ![before](tut-react-and-spring-data-rest/basic/images/with-job-years.png) |
 
 
@@ -482,7 +482,7 @@ Two extra tests were included, showing that an email cannot be _null_ neither _e
     It is expected to see the following:
 
 |                         **Before the new feature**                         | **After the new feature**                                            |
-|:--------------------------------------------------------------------------:|:---------------------------------------------------------------------|
+|:--------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
 | ![before](tut-react-and-spring-data-rest/basic/images/with-job-years.png)  | ![after](tut-react-and-spring-data-rest/basic/images/with-email.png) |
 
 5. As requested in the assignment, all changes were added to the remote repository in a single commit and the related issue
@@ -625,7 +625,7 @@ they have some differences in terms of features, workflow, and usage.
 * #### Pros of Git and Mercurial:
 
 | Git                                                                                                          | Mercurial                                                                                             |
-|:-------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------|
+|:------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------:|
 | Extensive community support                                                                                  | Simple command line interface                                                                         |
 | Really good branching and merging capabilities                                                               | Begginer friendly due to its clear and comprehensive documentation                                    |
 | Flexible branching model suitable for complex workflows                                                      | Built-in web interface and GUI tools, make it easy to visualize repository history and manage changes |
@@ -636,7 +636,7 @@ they have some differences in terms of features, workflow, and usage.
 * #### Cons of Git and Mercurial:
 
 | Git                                     | Mercurial                                                                                             |
-|:----------------------------------------|:------------------------------------------------------------------------------------------------------|
+|:---------------------------------------:|:-----------------------------------------------------------------------------------------------------:|
 | Challeging for begginers to learn       | Smaller community support                                                                             |
 | Can be complex to manage large projects | Slower performance, especially for large repositories                                                 |
 | Some commands have non-intuitive syntax | Limited support for complex branching and merging |
