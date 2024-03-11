@@ -69,8 +69,19 @@ public class Employee {
 		return ((firstName != null && !firstName.trim().isEmpty()) &&
 				(lastName != null && !lastName.trim().isEmpty()) &&
 				(description != null && !description.trim().isEmpty()) &&
-				(email != null && !email.trim().isEmpty()));
+				(email != null && countEmailCharacter(email) == 1));
 	}
+
+	private int countEmailCharacter(String email){
+		char charToVerify = '@';
+		int counter = 0;
+		for(char letter : email.toCharArray()){
+			if(letter == charToVerify)
+				counter++;
+		}
+		return counter;
+	}
+
 	@Override
 	public int hashCode() {
 
