@@ -226,4 +226,44 @@ public class EmployeeTest {
         assertEquals(expected,result);
     }
 
+    @Test
+    void whenEmailWithoutSpecialCharacter_ThenThrowsInstantiationException() {
+        //Arrange
+        String firstName = "Mariana";
+        String lastName = "Pereira";
+        String description = "Chemical Engineer";
+        String email = "exampleemail.com";
+        String expected = "Invalid employee data.";
+        int jobYears = 3;
+
+        //Act
+        Exception exception = assertThrows(InstantiationException.class, () -> {
+            new Employee(firstName, lastName, description, jobYears, email);
+        });
+        String result = exception.getMessage();
+
+        //Assert
+        assertEquals(expected,result);
+    }
+
+    @Test
+    void whenEmailWithMoreThanOneSpecialCharacter_ThenThrowsInstantiationException() {
+        //Arrange
+        String firstName = "Mariana";
+        String lastName = "Pereira";
+        String description = "Chemical Engineer";
+        String email = "exa@mple@email.com";
+        String expected = "Invalid employee data.";
+        int jobYears = 3;
+
+        //Act
+        Exception exception = assertThrows(InstantiationException.class, () -> {
+            new Employee(firstName, lastName, description, jobYears, email);
+        });
+        String result = exception.getMessage();
+
+        //Assert
+        assertEquals(expected,result);
+    }
+
 }
