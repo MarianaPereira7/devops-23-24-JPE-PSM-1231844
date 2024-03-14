@@ -36,8 +36,7 @@ The repository containing all the work developed using **Git** can be found [**h
      - [2. Fixed-invalid-email Branch](#2-fixed-invalid-email-branch)
 4. [Alternative Solution: Git vs. Mercurial](#4-alternative-solution-git-vs-mercurial)
     - [Pros and Cons](#pros-and-cons)
-    - [Mercurial: How to Get Started](#mercurial-how-to-get-started)
-    - [Mercurial Commands](#corresponding-mercurial-commands)
+    - [Mercurial Commands](#mercurial-commands)
 5. [Useful Sources](#5-useful-sources)
 
 <br>
