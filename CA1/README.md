@@ -21,6 +21,8 @@ it was closed and linked to a specific commit (The web version of GitHub was use
 A pattern like major.minor.revision (e.g., 1.1.0) was adopted.
 The repository containing all the work developed using **Git** can be found [**here**](https://github.com/MarianaPereira7/devops-23-24-JPE-PSM-1231844).
 
+<br>
+
 ---
 
 ## Table of Contents
@@ -38,6 +40,8 @@ The repository containing all the work developed using **Git** can be found [**h
     - [Mercurial Commands](#corresponding-mercurial-commands)
 5. [Useful Sources](#5-useful-sources)
 
+<br>
+
 ---
 
 ## 1. Git: How to Get Started
@@ -51,25 +55,25 @@ Follow the next steps to create a new repository and prepare it for this assignm
 following set of commands. 
     ```bash
     //to create the first file
-    touch test_file.txt
+    $ touch test_file.txt
     
     //to initialize the Git repository
-    git init
+    $ git init
     
     //to add the untracked files to the staging area 
-    git add test_file.txt
+    $ git add test_file.txt
     
     //to create the frist commit
-    git commit -m "first commit"
+    $ git commit -m "first commit"
     
     //to rename the default branch from master to main
-    git branch -M main
+    $ git branch -M main
     
     //to link the local repository with a remote repository on GitHub
-    git remote add origin https://github.com/your_username/repository_name.git
+    $ git remote add origin https://github.com/your_username/repository_name.git
     
     //to push the commits from the local main branch to the main branch on the remote repository
-    git push -u origin main.
+    $ git push -u origin main.
     ```
    
 4. Add a `.gitignore` file in the repository's root, which will serve to
@@ -78,7 +82,7 @@ This way, we are preventing them from being accidentally committed to the remote
 this file was further edited to only omit all content of `.idea/` folder, since the repository containing the 
 source code for this assignment already has a specific and adjusted `.gitignore` file.
     ```bash
-    touch .gitignore
+    $ touch .gitignore
     ```
    
 5. Now it is the time to clone the repository containing the source code for this assignment. Follow this 
@@ -86,9 +90,9 @@ source code for this assignment already has a specific and adjusted `.gitignore`
 `code <>` button and copy the URL displayed (once again, example bellow using HTTPS option). Create a new folder to clone 
 this new repository to (e.g. CA1), navigate to that folder and finally clone the repository.
     ```bash
-    mkdir CA1
-    cd CA1
-    git clone https://github.com/spring-guides/tut-react-and-spring-data-rest.git
+    $ mkdir CA1
+    $ cd CA1
+    $ git clone https://github.com/spring-guides/tut-react-and-spring-data-rest.git
     ```
 
 **VERY IMPORTANT NOTE:** After cloning, move to the tut-react-and-spring-data-rest folder and remove the .git folder, since 
@@ -98,10 +102,12 @@ there is already one on your root. Having multiple `.git` folders would violate 
 content to it, simply do `touch README.md "This is a readme file"`
 7. Finally, add your changes to the staging area, make your commit with a proper message and push them to your remote repository.
     ```bash
-    git add .
-    git commit -m "proper commit message"
-    git push
+    $ git add .
+    $ git commit -m "proper commit message"
+    $ git push
     ```
+
+<br>
 
 ---
 ## 2. How to Create Issues on GitHub
@@ -121,6 +127,7 @@ Considering this assignment's objectives, the following issues were created:
 |    **#2**     | Create a branch named _email-field_ to add a new email field to the application |
 |    **#3**     | Create a branch for fixing email bugs                                           |
 
+<br>
 
 ---
 ## 3. Assignment Tasks
@@ -136,7 +143,7 @@ Considering this assignment's objectives, the following issues were created:
 In order to implement the previous objectives, consider the following steps:
 1. Create a tag to mark the beginning of the assignment.  
     ```bash
-    git tag -a v1.1.0 -m "Assignment Part 1 - Starting Point"
+    $ git tag -a v1.1.0 -m "Assignment Part 1 - Starting Point"
     ```
 
 2. Open the `Employee` Class in `basic/src/main/java/com.gregIturnquist.payroll` package and add a new private 
@@ -432,32 +439,34 @@ in order to consider the new field.
 10. To see the changes in the client side, open Git bash terminal, change to the basic folder using `cd CA1/tut-react-and-spring-data-rest/basic/` and use the following command,
    to execute the Spring Boot application using Maven Wrapper.
     ```bash
-    ./mvnw spring-boot:run
+    $ ./mvnw spring-boot:run
     ```
 
 11. Click [**here**](http://localhost:8080/) to launch the client in your browser.
 It is expected to see the following:
 
-|                          **Before the new feature**                          | **After the new feature**                                                 |
-|:----------------------------------------------------------------------------:|:--------------------------------------------------------------------------|
+|                          **Before the new feature**                          |                         **After the new feature**                         |
+|:----------------------------------------------------------------------------:|:-------------------------------------------------------------------------:|
 | ![before](tut-react-and-spring-data-rest/basic/images/without-job-years.png) | ![before](tut-react-and-spring-data-rest/basic/images/with-job-years.png) |
 
 
 12. As requested in the assignment, all changes were added to the remote repository in a single commit and the related issue 
 was closed, using the next set of commands:
     ```bash 
-    git add .
-    git commit -m "Add new field to consider employee job years fixes #1"
-    git push
+    $ git add .
+    $ git commit -m "Add new field to consider employee job years fixes #1"
+    $ git push
     ```
 
 13. Make a tag to mark that the feature is completed and a second one to officially mark the end of Part 1 assignment.  
 Then push all the tags to the remote repository.
     ```bash
-    git tag -a v1.2.0 -m "Assignment Part 1 - Ending Point"
-    git tag ca1-part1
-    git push origin --tags
+    $ git tag -a v1.2.0 -m "Assignment Part 1 - Ending Point"
+    $ git tag ca1-part1
+    $ git push origin --tags
     ```
+
+<br>
 
 ---
 
@@ -475,9 +484,9 @@ In this section, it is going to be explained how to work in a separate branch to
 repository, switch your working directory to the new branch to start working on it and, finally, push it to the remote 
 repository to track the local `email-field` branch. The objective is to work on this new branch to develop a new feature.
     ```bash
-    git branch email-field
-    git checkout email-field
-    git push -u origin email-field
+    $ git branch email-field
+    $ git checkout email-field
+    $ git push -u origin email-field
     ```
 <br>
 
@@ -531,21 +540,21 @@ Two extra tests were included, showing that an email cannot be _null_ neither _e
 3. To see the changes in the client side, open Git bash terminal, change to the basic folder using `cd CA1/tut-react-and-spring-data-rest/basic/` and use the following command,
    to execute the Spring Boot application using Maven Wrapper.
     ```bash
-    ./mvnw spring-boot:run
+    $ ./mvnw spring-boot:run
     ```
 
 4. Click [**here**](http://localhost:8080/) to launch the client again in your browser.
     It is expected to see the following:
 
-|                         **Before the new feature**                         | **After the new feature**                                            |
-|:--------------------------------------------------------------------------:|:---------------------------------------------------------------------|
+|                         **Before the new feature**                         |                      **After the new feature**                       |
+|:--------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
 | ![before](tut-react-and-spring-data-rest/basic/images/with-job-years.png)  | ![after](tut-react-and-spring-data-rest/basic/images/with-email.png) |
 
 5. As requested in the assignment, all changes were added to the remote repository in a single commit and the related issue
     was closed, using the next set of commands:
     ```bash 
-    git add .
-    git commit -m "Add new field to consider employee email fixes #2"
+    $ git add .
+    $ git commit -m "Add new field to consider employee email fixes #2"
     ```
 
 6.  To reflect this changes in the main branch, switch to the main branch, merge changes from the email-field branch into main with a 
@@ -553,15 +562,15 @@ non-fast-forward merge, and then push the changes to the remote repository.
 Note: A non-fast-forward merge preserves the history and clearly indicates that a merge has occurred, even if there are
 no divergent changes between the branches.
     ```bash 
-    git checkout main
-    git merge --no-ff email-field
-    git push origin main
+    $ git checkout main
+    $ git merge --no-ff email-field
+    $ git push origin main
     ```
 
 7. Finally, make a tag to mark that the feature is completed, then push it to the remote repository.
     ```bash
-    git tag -a v1.3.0 -m "Finish Assignment Part 2.1"
-    git push origin --tags
+    $ git tag -a v1.3.0 -m "Finish Assignment Part 2.1"
+    $ git push origin --tags
     ```
 
 <br>
@@ -577,9 +586,9 @@ Similarly to the previous branch:
    repository, switch your working directory to the new branch to start working on it and, finally, push it to the remote
    repository to track the local `fix-invalid-email` branch. The objective is to work on this new branch to fix the bug.
     ```bash
-    git branch fix-invalid-email
-    git checkout fix-invalid-email
-    git push -u origin fix-invalid-email
+    $ git branch fix-invalid-email
+    $ git checkout fix-invalid-email
+    $ git push -u origin fix-invalid-email
     ```
 
 2. Add extra validation of the email field, by implementing the methods shown below. Update also the 
@@ -650,26 +659,27 @@ Similarly to the previous branch:
 3. As requested in the assignment, all changes were added to the remote repository in a single commit and the related issue
    was closed, using the next set of commands:
     ```bash 
-    git add .
-    git commit -m "Fix bug in employee email field fixes #3"
+    $ git add .
+    $ git commit -m "Fix bug in employee email field fixes #3"
     ```
 
 4.  To reflect this changes in the main branch, switch to the main branch, merge changes from the `fix-invalid-email` 
 branch into `main` with a non-fast-forward merge, and then push the changes to the remote repository.
     ```bash 
-    git checkout main
-    git merge --no-ff fix-invalid-email
-    git push origin main
+    $ git checkout main
+    $ git merge --no-ff fix-invalid-email
+    $ git push origin main
     ```
 
 5. Finally, make a tag to mark that the feature is completed and another one to mark the end of the Assignment, 
 then push all tags to the remote repository.
     ```bash
-    git tag -a v1.3.1 -m "Finish Assignment Part 2.2"
-    git tag -a ca1-part2 -m "Finish Class Assignment 1"
-    git push origin --tags
+    $ git tag -a v1.3.1 -m "Finish Assignment Part 2.2"
+    $ git tag -a ca1-part2 -m "Finish Class Assignment 1"
+    $ git push origin --tags
     ```
 
+<br>
 
 ---
 ## 4. Alternative Solution: Git vs. Mercurial
@@ -707,8 +717,10 @@ preferences, project needs, and available resources.
 <br>
 
 ### Mercurial Commands
-Considering all commands used in this assignment, below there is a comparison with Mercurial's commands and their purpose,
-if one's would like to implement this assignment using Mercurial's VCS. It is possible to conclude that basic commands are the same, differing just on the one to switch branches.
+Taking into account all the commands employed in this assignment, the following comparison outlines Mercurial's 
+equivalent commands and their respective functions for those interested in implementing this assignment using Mercurial's 
+Version Control System.
+
 
 | Git command  | Mercurial Command |                                 Purpose                                  |
 |:------------:|:-----------------:|:------------------------------------------------------------------------:|
@@ -723,7 +735,19 @@ if one's would like to implement this assignment using Mercurial's VCS. It is po
 |   git pull   |      hg pull      | To fetch changes from a remote repository and merge them into the local  |
 |   git tag    |      hg tag       |            To mark a specific commit with a unique identifier            |
 
+<br>
+It becomes apparent that the fundamental commands align closely,  differing primarily in the command used for switching 
+branches. Branching in Mercurial carries a distinct concept compared to Git, potentially leading to added complexity. 
+In Mercurial, branches represent a linear sequence of consecutive changesets, with each changeset encapsulating a complete 
+set of modifications made to a file within a repository. Mercurial integrates branches directly into commits, permanently 
+preserving them within the repository's history. Consequently, removing branches is not feasible as it would disrupt the historical 
+record. However, Mercurial offers bookmarks as a means to reference specific commits, allowing for functionality akin to Git's branches.
 
+Furthermore, it is essential to have caution to avoid inadvertently pushing code to the wrong branch in Mercurial, particularly when branch names are lacking some clarity.
+Git offers mechanisms to mitigate this risk more straightforwardly. Unlike Git, Mercurial lacks an intermediate index or staging area before committing changes.
+Modifications are directly committed from the working directory in Mercurial.
+
+<br>
 
 ---
 ## 5. Useful Sources
