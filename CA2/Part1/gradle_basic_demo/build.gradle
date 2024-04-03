@@ -72,3 +72,11 @@ task runServer(type:JavaExec, dependsOn: classes){
 
     args '59001'
 }
+
+// Define a task to make a copy of all the source code
+task backupCopy(type:Copy){
+    group = "Backup"
+    description = "Creates a backup copy of all the source code, including tests"
+    from 'src/'
+    into 'build/backup'
+}
