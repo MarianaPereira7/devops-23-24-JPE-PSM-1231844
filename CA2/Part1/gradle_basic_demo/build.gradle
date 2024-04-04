@@ -80,3 +80,12 @@ task backupCopy(type:Copy){
     from 'src/'
     into 'build/backup'
 }
+
+// Define a task to create a ZIP file containing all the source code files and directories
+task zipSources(type:Zip){
+    group = "Backup"
+    description = "Creates a zip file containing all the source code, including tests"
+    from 'src/'
+    archiveFileName = 'sources_backup.zip'
+    destinationDir = file('build/backup')
+}
