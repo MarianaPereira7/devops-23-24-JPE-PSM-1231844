@@ -194,13 +194,15 @@ or perform other tasks.
 
 Follow the instructions below:
 * Install openssh-server to use ssh to open secure terminal sessions to the VM:
+```bash
 $ sudo apt install openssh-server
-
+```
 
 * Enable password authentication for ssh and uncomment the line `PasswordAuthentication yes`:
+```bash
 $ sudo nano /etc/ssh/sshd_config
 $ sudo service ssh restart
-
+```
 
 It was decided to clone the repository using SSH, so it was required to generate the private-public key pair to establish 
 the connection with the SSH server, using the command below. The public key is shared with the host, and the private key 
@@ -215,9 +217,10 @@ If a file name is not specified, the default file names for each key are the fol
 * **public key:** id_rsa.pub
   These files will be stored in the `.ssh` directory in your VM home directory (~/.ssh).
 
-Since ssh server was already enabled before, it is possible to access to the id_rsa.pub file, generated in the virtual machine, from the host machine.
-Try it out by opening a terminal in your host and type your VM username followed by its IP (attributed when configuring your Host-only network in the step XXXX). As an example, for this assignment it was used:
-$ ssh mariana@192.168.101.7
+Since ssh server was already enabled before, it is possible to access to the id_rsa.pub file, generated in the virtual machine, 
+from the host machine. Try it out by opening a terminal in your host and type your VM username followed by its IP (attributed 
+when configuring your Host-only network in **Part 1, section 1.2**). As an example, for this assignment it was used:
+`ssh mariana@192.168.101.7`
 
 Print the public key in your terminal and then copy it:
 
@@ -290,7 +293,7 @@ have changed:
 
 4. Build the project by running again `./mvnw clean install`:
 
-* **Before Build** - No /target folder:
+* **Before Build** - No `/target` folder:
 
 ![before_build](images/before_maven_install_ca1.png)
 
@@ -354,7 +357,8 @@ At the time of CA2, it was supposed to run the server and the client in the same
 Now, it is required to run the server in the virtual machine and the client in the host machine. Since server IP is 
 defined to be the localhost and the application is being run at the host machine, there will never be a connection to the server.
 
-To succeed in connecting to the server and launch the chat room service, the runClient task should be changed to:
+To succeed in connecting to the server and launch the chat room service, the runClient task should be changed to (this 
+change was not committed for version control, just temporarily changed for test purposes):
 
 ```groovy
 task runClient(type:JavaExec, dependsOn: classes){
@@ -375,9 +379,9 @@ task runClient(type:JavaExec, dependsOn: classes){
 
 where the if statement allows to specify the IP where the server is running (if omitted, it assumes `localhost` is to be considered).
 With this modification, the runClient task can be run with an additional parameter `-PserverIp=<IP_ADDRESS>` to specify the 
-IP address where the server is running (the port definitions were maintained). The `-P` flag is used to pass project properties 
-from the command line. When using `-PserverIp=<IP_ADDRESS>`, a project property named `serverIp` is set with the value `<IP_ADDRESS>`. 
-This property can then be accessed within the Gradle build script.
+IP address where the server is running (the port definitions were maintained).  
+The `-P` flag is used to pass project properties from the command line. When using `-PserverIp=<IP_ADDRESS>`, 
+a project property named `serverIp` is set with the value `<IP_ADDRESS>`. This property can then be accessed within the Gradle build script.
 
 Build your project again and try to execute the runClient task one more time to launch the chat room service, but now specify 
 the actual server IP address as follows:
