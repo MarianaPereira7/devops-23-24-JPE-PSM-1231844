@@ -3,8 +3,7 @@
 ## Overview
 The goal of this class assignment was to explore Docker by creating docker images and running containers. 
 The objective was to run the chat server from the application explored in the Class Assignment 2 Part 1 (source code and 
-more information relative to the assignment can be found [**here**](https://github.com/MarianaPereira7/devops-23-24-JPE-PSM-1231844/tree/main/CA2/Part1).
-can be found here), using two different approaches:
+more information relative to the assignment can be found [**here**](https://github.com/MarianaPereira7/devops-23-24-JPE-PSM-1231844/tree/main/CA2/Part1)), using two different approaches:
 * **Version 1:** Create a docker image to execute the chat server, where the application is built when building the docker image;
 * **Version 2:** Create a docker image to execute the chat server, where the application is first built in the host computer
 and then only the resultant .jar file is copied to the Dockerfile.
