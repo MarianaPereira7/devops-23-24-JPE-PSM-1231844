@@ -1,0 +1,27 @@
+version: '3'
+services:
+  web:
+    build: web
+    image: mcp1231844/spring-basic-tutorial-web:ca4-pt2
+    ports:
+      - "8080:8080"
+    networks:
+      - ca4
+    environment:
+      DATABASE_IP: db
+      DATABASE_PORT: "9092"
+    depends_on:
+      - "db"
+  db:
+    build: db
+    image: mcp1231844/spring-basic-tutorial-db:ca4-pt2
+    ports:
+      - "8082:8082"
+      - "9092:9092"
+    volumes:
+      - ./db/shared_db:/opt/db/shared_db
+    networks:
+      - ca4
+
+networks:
+  ca4:
