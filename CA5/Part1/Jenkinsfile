@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                 echo 'Checking out...'
+                 git 'https://github.com/MarianaPereira7/devops-23-24-JPE-PSM-1231844.git'
+            }
+        }
+
+        stage('Assemble') {
+            steps {
+                 echo 'Assembling...'
+                 dir('devops-23-24-JPE-PSM-1231844/CA2/Part1/gradle_basic_demo')
+                    sh './gradlew assemble'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                 echo 'Running Unit Tests...'
+                 dir('devops-23-24-JPE-PSM-1231844/CA2/Part1/gradle_basic_demo') {
+                    sh './gradlew test'
+                    junit 'build/test-results/*/*.xml'
+                 }
+            }
+        }
+
+        stage('Archiving') {
+            steps {
+                 echo 'Archiving...'
+                 dir('devops-23-24-JPE-PSM-1231844/CA2/Part1/gradle_basic_demo')
+                    archiveArtifacts 'build/distributions/*'
+            }
+        }
+    }
+}
