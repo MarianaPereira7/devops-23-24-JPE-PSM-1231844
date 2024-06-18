@@ -1,0 +1,100 @@
+pipeline {
+    agent any
+
+    environment {
+        dockerImageRepo='mcp1231844/spring-basic-tutorial-web-jenkins:ca5-part2'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                 echo 'Checking out...'
+                 dir('devops-23-24-JPE-PSM-1231844'){
+                    git branch: 'main',
+                        url: 'https://github.com/MarianaPereira7/devops-23-24-JPE-PSM-1231844'
+                 }
+            }
+        }
+
+        stage('Assemble') {
+            steps {
+                 echo 'Assembling...'
+                 dir('devops-23-24-JPE-PSM-1231844/CA2/Part2/react-and-spring-data-rest-basic'){
+                    sh 'chmod +x gradlew'
+                    sh './gradlew assemble'
+                 }
+            }
+        }
+
+        stage('Test') {
+            steps {
+                 echo 'Running Unit Tests...'
+                 dir('devops-23-24-JPE-PSM-1231844/CA2/Part2/react-and-spring-data-rest-basic') {
+                    sh './gradlew test'
+                    junit 'build/test-results/*/*.xml'
+                 }
+            }
+        }
+
+        stage('Javadoc') {
+            steps {
+                 echo 'Creating Javadoc...'
+                 dir('devops-23-24-JPE-PSM-1231844/CA2/Part2/react-and-spring-data-rest-basic') {
+                    sh './gradlew javadoc'
+                    publishHTML (target : [
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true,
+                        reportDir: 'build/docs/javadoc',
+                        reportFiles: 'index-all.html',
+                        reportName: 'Javadoc',
+                        reportTitles: 'react-and-spring-data-rest-basic'
+                        ])
+                 }
+            }
+        }
+
+        stage('Archiving') {
+            steps {
+                 echo 'Archiving...'
+                 dir('devops-23-24-JPE-PSM-1231844/CA2/Part2/react-and-spring-data-rest-basic'){
+                    archiveArtifacts 'build/libs/*.war'
+                 }
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                echo 'Building Docker Image...'
+                dir('devops-23-24-JPE-PSM-1231844/CA2/Part2/react-and-spring-data-rest-basic') {
+                    // Copy the WAR file into the Docker build context
+                    sh 'cp build/libs/react-and-spring-data-rest-basic-0.0.1-SNAPSHOT.war .'
+
+                    // Dynamically generate Dockerfile
+                    script {
+                        def dockerfileContent = """
+                        FROM tomcat:10.0.20-jdk17-temurin
+
+                        COPY *.war /usr/local/tomcat/webapps/
+                        """
+                        writeFile file: 'Dockerfile', text: dockerfileContent
+                    }
+
+                    script {
+                        sh 'sudo docker build . -t ${dockerImageRepo}'
+                    }
+                }
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                echo 'Pushing Docker Image...'
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-login', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh 'sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+                    sh 'sudo docker push ${dockerImageRepo}'
+                }
+            }
+        }
+    }
+}
