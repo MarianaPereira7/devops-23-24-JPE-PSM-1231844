@@ -6,8 +6,8 @@ pipeline {
             steps {
                  echo 'Checking out...'
                  dir('devops-23-24-JPE-PSM-1231844'){
-                 git branch: 'main',
-                    url: 'https://github.com/MarianaPereira7/devops-23-24-JPE-PSM-1231844'
+                    git branch: 'main',
+                        url: 'https://github.com/MarianaPereira7/devops-23-24-JPE-PSM-1231844'
                  }
             }
         }
